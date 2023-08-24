@@ -37,8 +37,8 @@ public class CustomerPanel extends javax.swing.JPanel {
         headerPanel1 = new javax.swing.JPanel();
         headerLabel1 = new javax.swing.JLabel();
         formPanel1 = new javax.swing.JPanel();
-        custIdLabel1 = new javax.swing.JLabel();
-        custIdText1 = new javax.swing.JTextField();
+        custIdLabel = new javax.swing.JLabel();
+        custIdText = new javax.swing.JTextField();
         custTitleText = new javax.swing.JTextField();
         custTitleLabel = new javax.swing.JLabel();
         custDobText = new javax.swing.JTextField();
@@ -83,13 +83,13 @@ public class CustomerPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        custIdLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        custIdLabel1.setText("Cust ID :");
+        custIdLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        custIdLabel.setText("Cust ID :");
 
-        custIdText1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        custIdText1.addActionListener(new java.awt.event.ActionListener() {
+        custIdText.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        custIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custIdText1ActionPerformed(evt);
+                custIdTextActionPerformed(evt);
             }
         });
 
@@ -195,7 +195,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                     .addGroup(formPanel1Layout.createSequentialGroup()
                         .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(custAddressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(custIdLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(custIdLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(custTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(custDobLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -204,7 +204,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                             .addGroup(formPanel1Layout.createSequentialGroup()
                                 .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(custDobText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(custIdText1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(custIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(formPanel1Layout.createSequentialGroup()
                                 .addComponent(custTitleText, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,8 +226,8 @@ public class CustomerPanel extends javax.swing.JPanel {
             .addGroup(formPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(custIdLabel1)
-                    .addComponent(custIdText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(custIdLabel)
+                    .addComponent(custIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(custTitleLabel)
@@ -325,9 +325,9 @@ public class CustomerPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void custIdText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custIdText1ActionPerformed
+    private void custIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custIdTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_custIdText1ActionPerformed
+    }//GEN-LAST:event_custIdTextActionPerformed
 
     private void custAddressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custAddressTextActionPerformed
         // TODO add your handling code here:
@@ -356,7 +356,6 @@ public class CustomerPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
-    private javax.swing.JPanel basePanel;
     private javax.swing.JPanel basePanel1;
     private javax.swing.JTable costomerTable;
     private javax.swing.JLabel custAddressLabel;
@@ -366,9 +365,7 @@ public class CustomerPanel extends javax.swing.JPanel {
     private javax.swing.JLabel custDobLabel;
     private javax.swing.JTextField custDobText;
     private javax.swing.JLabel custIdLabel;
-    private javax.swing.JLabel custIdLabel1;
     private javax.swing.JTextField custIdText;
-    private javax.swing.JTextField custIdText1;
     private javax.swing.JLabel custNameLabel;
     private javax.swing.JTextField custNameText;
     private javax.swing.JLabel custProvinceLabel;
@@ -380,11 +377,8 @@ public class CustomerPanel extends javax.swing.JPanel {
     private javax.swing.JLabel custZipLabel;
     private javax.swing.JTextField custZipText;
     private javax.swing.JButton delete;
-    private javax.swing.JPanel formPanel;
     private javax.swing.JPanel formPanel1;
-    private javax.swing.JLabel headerLabel;
     private javax.swing.JLabel headerLabel1;
-    private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel headerPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel tablePanel;
@@ -410,6 +404,7 @@ public class CustomerPanel extends javax.swing.JPanel {
      } catch (Exception ex) {
          Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
          JOptionPane.showMessageDialog(this, ex.getMessage());
+         clear();
      }
     }
     private void clear() {

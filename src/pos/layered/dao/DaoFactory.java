@@ -28,12 +28,12 @@ public class DaoFactory {
         switch (type) {
             case CUSTOMER:
                 return new CustomerDaoImpl();
-            case ITEM:
-                return new ItemDaoImpl();
-            case ORDER:
-                return new OrderDaoImpl();
-            case ORDER_DETAIL:
-                return new OrderDetailDaoImpl();
+//            case ITEM:
+//                return new ItemDaoImpl();
+//            case ORDER:
+//                return new OrderDaoImpl();
+//            case ORDER_DETAIL:
+//                return new OrderDetailDaoImpl();
             default:
                 return null;
         }
