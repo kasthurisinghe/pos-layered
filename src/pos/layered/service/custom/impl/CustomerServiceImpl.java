@@ -40,7 +40,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public String updateCustomer(CustomerDto dto) throws Exception {
-        CustomerEntity ce = new CustomerEntity(dto.getId(), dto.getTitle(),
+        CustomerEntity ce = new CustomerEntity(
+                dto.getId(), dto.getTitle(),
                 dto.getName(), dto.getDob(), dto.getSalary(),
                 dto.getAddress(), dto.getCity(), dto.getProvince(),
                 dto.getZip());
