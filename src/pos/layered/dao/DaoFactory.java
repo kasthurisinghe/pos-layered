@@ -5,6 +5,7 @@
 package pos.layered.dao;
 
 import pos.layered.dao.custom.impl.CustomerDaoImpl;
+import pos.layered.dao.custom.impl.ItemDaoImpl;
 
 /**
  *
@@ -28,8 +29,8 @@ public class DaoFactory {
         switch (type) {
             case CUSTOMER:
                 return new CustomerDaoImpl();
-//            case ITEM:
-//                return new ItemDaoImpl();
+            case ITEM:
+                return new ItemDaoImpl();
 //            case ORDER:
 //                return new OrderDaoImpl();
 //            case ORDER_DETAIL:
