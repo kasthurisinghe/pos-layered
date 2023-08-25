@@ -35,7 +35,10 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="headerPanel1" alignment="0" max="32767" attributes="0"/>
-              <Component id="formPanel1" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="formPanel1" max="32767" attributes="0"/>
+              </Group>
               <Component id="tablePanel" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
@@ -93,33 +96,34 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="unitSizeLabel" alignment="1" max="32767" attributes="0"/>
                                       <Component id="itemCodeLabel1" alignment="1" max="32767" attributes="0"/>
                                       <Component id="descriptionLabel" alignment="1" max="32767" attributes="0"/>
                                       <Component id="packSizeLabel" alignment="1" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="qohLabel" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Component id="qohLabel" alignment="0" pref="89" max="32767" attributes="0"/>
+                                  <Component id="itemCodeLabel" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="descriptionText" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="itemCodeText1" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                               <Component id="packSizeText" alignment="0" max="32767" attributes="0"/>
                                               <Component id="unitPriceText" alignment="0" max="32767" attributes="0"/>
                                               <Component id="qohText" alignment="0" pref="169" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="itemCodeText" min="-2" pref="168" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="descriptionText" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="99" max="32767" attributes="0"/>
                               <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="updateButton" min="-2" max="-2" attributes="0"/>
@@ -135,9 +139,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="itemCodeLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="itemCodeText1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="itemCodeLabel1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="itemCodeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="itemCodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -176,18 +183,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Item Code :"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="itemCodeText1">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="12" style="1"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCodeText1ActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="descriptionText">
               <Properties>
@@ -287,6 +283,21 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="itemCodeText">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="itemCodeLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Item Code :"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

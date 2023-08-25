@@ -4,17 +4,29 @@
  */
 package pos.layered.view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import pos.layered.controller.ItemController;
+import pos.layered.dto.ItemDto;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class ItemPanel extends javax.swing.JPanel {
 
+    private ItemController itemController;
+
     /**
      * Creates new form ItemPanel
      */
     public ItemPanel() {
+        itemController=new ItemController();
         initComponents();
+        loadAllItems();
     }
 
     /**
@@ -31,7 +43,6 @@ public class ItemPanel extends javax.swing.JPanel {
         headerLabel1 = new javax.swing.JLabel();
         formPanel1 = new javax.swing.JPanel();
         itemCodeLabel1 = new javax.swing.JLabel();
-        itemCodeText1 = new javax.swing.JTextField();
         descriptionText = new javax.swing.JTextField();
         descriptionLabel = new javax.swing.JLabel();
         packSizeText = new javax.swing.JTextField();
@@ -43,6 +54,8 @@ public class ItemPanel extends javax.swing.JPanel {
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+        itemCodeText = new javax.swing.JTextField();
+        itemCodeLabel = new javax.swing.JLabel();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         itemTable = new javax.swing.JTable();
@@ -67,14 +80,6 @@ public class ItemPanel extends javax.swing.JPanel {
         );
 
         itemCodeLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        itemCodeLabel1.setText("Item Code :");
-
-        itemCodeText1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        itemCodeText1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemCodeText1ActionPerformed(evt);
-            }
-        });
 
         descriptionText.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
@@ -130,6 +135,11 @@ public class ItemPanel extends javax.swing.JPanel {
             }
         });
 
+        itemCodeText.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        itemCodeLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        itemCodeLabel.setText("Item Code :");
+
         javax.swing.GroupLayout formPanel1Layout = new javax.swing.GroupLayout(formPanel1);
         formPanel1.setLayout(formPanel1Layout);
         formPanel1Layout.setHorizontalGroup(
@@ -138,26 +148,27 @@ public class ItemPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(formPanel1Layout.createSequentialGroup()
-                        .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(unitSizeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(itemCodeLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(descriptionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(packSizeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(qohLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(qohLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(itemCodeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(descriptionText)
                             .addGroup(formPanel1Layout.createSequentialGroup()
                                 .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(itemCodeText1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(packSizeText, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(unitPriceText, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(qohText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(descriptionText)))
+                                        .addComponent(qohText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
+                                    .addComponent(itemCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(formPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 99, Short.MAX_VALUE)
                         .addComponent(deleteButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(updateButton)
@@ -169,9 +180,11 @@ public class ItemPanel extends javax.swing.JPanel {
             formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(itemCodeLabel1)
-                    .addComponent(itemCodeText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(itemCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(itemCodeLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(formPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descriptionLabel)
@@ -234,7 +247,9 @@ public class ItemPanel extends javax.swing.JPanel {
         basePanel1Layout.setHorizontalGroup(
             basePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(headerPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(formPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(basePanel1Layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(formPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         basePanel1Layout.setVerticalGroup(
@@ -260,10 +275,6 @@ public class ItemPanel extends javax.swing.JPanel {
             .addComponent(basePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void itemCodeText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCodeText1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemCodeText1ActionPerformed
 
     private void unitPriceTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unitPriceTextActionPerformed
         // TODO add your handling code here:
@@ -292,21 +303,16 @@ public class ItemPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JPanel basePanel;
     private javax.swing.JPanel basePanel1;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextField descriptionText;
-    private javax.swing.JPanel formPanel;
     private javax.swing.JPanel formPanel1;
-    private javax.swing.JLabel headerLabel;
     private javax.swing.JLabel headerLabel1;
-    private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel headerPanel1;
     private javax.swing.JLabel itemCodeLabel;
     private javax.swing.JLabel itemCodeLabel1;
     private javax.swing.JTextField itemCodeText;
-    private javax.swing.JTextField itemCodeText1;
     private javax.swing.JTable itemTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel packSizeLabel;
@@ -320,18 +326,102 @@ public class ItemPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void saveItem() {
-        
-    }
+        try {
+            ItemDto itemDto = new ItemDto(itemCodeText.getText(),
+                    descriptionText.getText(),
+                    packSizeText.getText(),
+                    Double.parseDouble(unitPriceText.getText()),
+                    Integer.parseInt(qohText.getText()));
 
-    private void updateItem() {
-        
+            String resp = itemController.addItem(itemDto);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadAllItems();
+        } catch (Exception ex) {
+            Logger.getLogger(ItemPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }
 
     private void deleteItem() {
-        
+        try {
+
+            String resp = itemController.deleteItem(itemCodeText.getText());
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadAllItems();
+        } catch (Exception ex) {
+            Logger.getLogger(ItemPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void updateItem() {
+        try {
+            ItemDto itemDto = new ItemDto(itemCodeText.getText(),
+                    descriptionText.getText(),
+                    packSizeText.getText(),
+                    Double.parseDouble(unitPriceText.getText()),
+                    Integer.parseInt(qohText.getText()));
+
+            String resp = itemController.updateItem(itemDto);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadAllItems();
+        } catch (Exception ex) {
+            Logger.getLogger(ItemPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }
 
     private void searchItem() {
-        
+        try {
+            String itemCode = itemTable.getValueAt(itemTable.getSelectedRow(), 0).toString();
+
+            ItemDto itemDto = itemController.getItem(itemCode);
+
+            if (itemDto != null) {
+                itemCodeText.setText(itemDto.getId());
+                descriptionText.setText(itemDto.getDescription());
+                packSizeText.setText(itemDto.getPackSize());
+                unitPriceText.setText(Double.toString(itemDto.getUnitPrice()));
+                qohText.setText(Integer.toString(itemDto.getQoh()));
+            } else {
+                JOptionPane.showMessageDialog(this, "Item Not Found");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ItemPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void loadAllItems() {
+        try {
+            String[] collumns = {"Code", "Description", "Pack Size", "Unit Price", "Quantity on Hand"};
+            DefaultTableModel dtm = new DefaultTableModel(collumns, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            itemTable.setModel(dtm);
+
+            ArrayList<ItemDto> itemDtos = itemController.getAllItem();
+            for (ItemDto item : itemDtos) {
+                Object[] row = {item.getId(), item.getDescription(), item.getPackSize(), item.getUnitPrice(), item.getQoh()};
+                dtm.addRow(row);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void clear() {
+        itemCodeText.setText("");
+        descriptionText.setText("");
+        packSizeText.setText("");
+        unitPriceText.setText("");
+        qohText.setText("");
     }
 }
