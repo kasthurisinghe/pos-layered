@@ -4,23 +4,35 @@
  */
 package pos.layered.view;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pos.layered.controller.CustomerController;
 import pos.layered.controller.ItemController;
+import pos.layered.dto.CustomerDto;
+import pos.layered.dto.ItemDto;
+import pos.layered.dto.OrderDetailDto;
 
 /**
  *
  * @author User
  */
 public class OrderPanel extends javax.swing.JPanel {
-private CustomerController customerController;
-private ItemController itemController;
+
+    private List<OrderDetailDto> orderDetailDtos = new ArrayList<>();
+
+    private CustomerController customerController;
+    private ItemController itemController;
+
     /**
      * Creates new form OrderPanel
      */
     public OrderPanel() {
-        customerController=new CustomerController();
-        itemController=new ItemController();
+        customerController = new CustomerController();
+        itemController = new ItemController();
         initComponents();
         loadTable();
     }
@@ -293,19 +305,19 @@ private ItemController itemController;
     }//GEN-LAST:event_orderIdTextActionPerformed
 
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
-        
+        searchCustomer();
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
     private void searchItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchItemButtonActionPerformed
-        
+        searchItem();
     }//GEN-LAST:event_searchItemButtonActionPerformed
 
     private void addItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemButtonActionPerformed
-        
+        addToTable();
     }//GEN-LAST:event_addItemButtonActionPerformed
 
     private void placeOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderButtonActionPerformed
-        
+
     }//GEN-LAST:event_placeOrderButtonActionPerformed
 
 
@@ -346,5 +358,55 @@ private ItemController itemController;
 
         };
         itemTable.setModel(dtm);
+    }
+
+    private void searchCustomer() {
+        try {
+            String custId = customerIdText.getText();
+            CustomerDto cust = customerController.getCustomer(custId);
+            if (cust != null) {
+                custDataLabel.setText(cust.getName() + ", " + cust.getAddress());
+            } else {
+                JOptionPane.showMessageDialog(this, "Customer Not Found");
+            }
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(OrderPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void searchItem() {
+        try {
+            String itemId = itemIdText.getText();
+            ItemDto item = itemController.getItem(itemId);
+            if (item != null) {
+                itemDataLabel.setText(item.getDescription() + ", " + item.getUnitPrice() + ", " + item.getQoh());
+            } else {
+                JOptionPane.showMessageDialog(this, "Item Not Found");
+            }
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(OrderPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void addToTable() {
+        OrderDetailDto od = new OrderDetailDto(itemIdText.getText(), Integer.parseInt(qtyText.getText()), Double.parseDouble(discountText.getText()));
+        orderDetailDtos.add(od);
+
+        Object[] rowData = {od.getItemId(), od.getQty(), od.getDiscount()};
+
+        DefaultTableModel dtm = (DefaultTableModel) itemTable.getModel();
+        dtm.addRow(rowData);
+
+        cleanItemData();
+
+    }
+
+    private void cleanItemData() {
+        itemIdText.setText("");
+        discountText.setText("");
+        qtyText.setText("");
+        itemDataLabel.setText("");
     }
 }
